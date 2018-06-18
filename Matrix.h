@@ -269,5 +269,5 @@ Matrix<T> operator*(const Matrix<T> &left, double right){
 template <class T>
 Matrix<T> operator/(const Matrix<T> &left, double right){
     Matrix<T> temp(left);
-    return (temp*= right);
+    return (temp/= right);
 }
