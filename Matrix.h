@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 string error_size = "Different sizes";
@@ -177,6 +178,64 @@ public:
             }
         }
         return temp;
+    }
+    bool operator==(Matrix<T> const &right ){
+        if(n!= right.n || m!=right.m){
+            return false;
+        }
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if(a[i][j] != right.a[i][j])
+                    return false;
+            }
+        }
+        return true;
+    }
+    bool operator!=(Matrix<T> const &right ){
+        return !operator==(right);
+    }
+    T getSumOfColumn(int _n){
+        T sum=0;
+        for(int i=0; i < m; i++){
+            sum+=a[i][_n];
+        }
+        return sum;
+    }
+    T getSumOfRow(int _m){
+        T sum=0;
+        for(int i=0; i < m; i++){
+            sum+=a[_m][i];
+        }
+        return sum;
+    }
+    T findMaxElement(){
+        T max=a[0][0];
+        for(int i=0; i < m; i++){
+            for(int j=0; j < n; j++){
+                if(a[i][j]>max) max = a[i][j];
+            }
+        }
+        return max;
+    }
+    T findMinElement(){
+        T min=a[0][0];
+        for(int i=0; i < m; i++){
+            for(int j=0; j < n; j++){
+                if(a[i][j]<min) min = a[i][j];
+            }
+        }
+        return min;
+    }
+    vector<T> getVector(){
+        vector<T> vector1(n);
+        for(int j=0; j < n; j++){
+            T min=a[0][j];
+            for(int i=0; i < n; i++){
+                if(a[i][j]<min) min = a[i][j];
+            }
+            vector1[j] =min;
+        }
+        return vector1;
     }
 };
 
